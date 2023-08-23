@@ -1,3 +1,5 @@
+import fetch from 'node-fetch';
+
 const url = "https://api.github.com/users";
 
 export class UserService {
