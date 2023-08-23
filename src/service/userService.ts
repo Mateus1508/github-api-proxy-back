@@ -1,50 +1,39 @@
-import fetch from 'node-fetch';
+import axios from 'axios';
 
-const url = "https://api.github.com/users";
+const githubApiBaseUrl = "https://api.github.com/users";
 
 export class UserService {
 
     getAllUsers = async (since: string) => {
-        const users = `${url}?since=${since}`;
+        const url = `${githubApiBaseUrl}?since=${since}`;
         try {
-            const res = await fetch(users);
-            const data = await res.json();
-            return data;
+            const response = await axios.get(url);
+            return response.data;
+        } catch (error) {
+            console.error(error);
+            throw error;
         }
-        catch(err) {
-            console.log(err)
-            throw err;
-        }
-        
     }
     
     getUserDetailsByUsername = async (username: string) => {
-        const users = `${url}/${username}`;
+        const url = `${githubApiBaseUrl}/${username}`;
         try {
-            const res = await fetch(users);
-            const data = await res.json();
-            return data;
+            const response = await axios.get(url);
+            return response.data;
+        } catch (error) {
+            console.error(error);
+            throw error;
         }
-        catch(err) {
-            console.log(err)
-            throw err;
-        }
-        
     }
     
     getUserReposByUsername = async (username: string) => {
-        const users = `${url}/${username}/repos`;
+        const url = `${githubApiBaseUrl}/${username}/repos`;
         try {
-            const res = await fetch(users);
-            const data = await res.json();
-            return data;
+            const response = await axios.get(url);
+            return response.data;
+        } catch (error) {
+            console.error(error);
+            throw error;
         }
-        catch(err) {
-            console.log(err)
-            throw err;
-        }
-        
     }
-
-
 }
